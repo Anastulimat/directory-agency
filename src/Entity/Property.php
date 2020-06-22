@@ -10,6 +10,30 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Property
 {
+
+    /**
+     * Property constructor.
+     *
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+        $this->updated_at = new \DateTime();
+        $this->sold = false;
+    }
+
+
+    const HEAT = [
+        0 => 'GAZ',
+        1 => 'Électrique',
+    ];
+
+    const TYPE = [
+        0 => 'Appartement',
+        1 => 'Maison'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -80,12 +104,22 @@ class Property
     /**
      * @ORM\Column(type="datetime")
      */
-    private $craeted_at;
+    private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $updated_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $sold;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
 
     public function getId(): ?int
     {
@@ -193,6 +227,11 @@ class Property
         return $this->type;
     }
 
+    public function getPropertyType()
+    {
+        return self::TYPE[$this->type];
+    }
+
     public function setType(int $type): self
     {
         $this->type = $type;
@@ -236,14 +275,14 @@ class Property
         return $this;
     }
 
-    public function getCraetedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->craeted_at;
+        return $this->created_at;
     }
 
-    public function setCraetedAt(\DateTimeInterface $craeted_at): self
+    public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->craeted_at = $craeted_at;
+        $this->created_at = $created_at;
 
         return $this;
     }
@@ -256,6 +295,35 @@ class Property
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getSold(): ?bool
+    {
+        return $this->sold;
+    }
+
+    public function setSold(bool $sold): self
+    {
+        $this->sold = $sold;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function getFormattedPrice()
+    {
+        return number_format($this->price, 0, "", " ");
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

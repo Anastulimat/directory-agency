@@ -27,81 +27,28 @@
     </div>
 </div>
 
+<!-- Recently added cards -->
 <div class="container-fluid mt-4">
     <div class="row row-section">
-        <div class="col-md-3">
-            <div class="card card-custom">
-                <img class="card-img-top" src="{{ asset('img/photo/photo-1512917774080-9991f1c4c750.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
-                <div class="card-body">
-                    <h5 class="card-title text-uppercase">Card title</h5>
-                    <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">300 000 €</p>
-                    <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> 105 rue didot, Paris</p>
-                    <p class="card-text text-muted text-uppercase">Appartement</p>
-                    <p class="card-text d-flex justify-content-between">
-                        <span><i class="fa fa-puzzle-piece fa-pink-color"></i> 60 m <sup>2</sup></span>
-                        <span><i class="fa fa-home fa-pink-color"></i> 1</span>
-                        <span><i class="fa fa-bed fa-pink-color"></i> 2</span>
-                        <span><i class="fa fa-bath fa-pink-color"></i> 1</span>
-                    </p>
+        {% for property in properties %}
+            <div class="col-md-3">
+                <div class="card card-custom">
+                    <img class="card-img-top" src="{{ asset('img/photo/photo-1512917774080-9991f1c4c750.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
+                    <div class="card-body">
+                        <h5 class="card-title text-uppercase">{{ property.name }}</h5>
+                        <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">{{ property.formattedPrice }} €</p>
+                        <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> {{ property.address }}</p>
+                        <p class="card-text text-muted text-uppercase">{{ property.propertyType }}</p>
+                        <p class="card-text d-flex justify-content-between">
+                            <span><i class="fa fa-puzzle-piece fa-pink-color"></i> {{ property.surface }} m <sup>2</sup></span>
+                            <span><i class="fa fa-home fa-pink-color"></i> {{ property.room }}</span>
+                            <span><i class="fa fa-bed fa-pink-color"></i> {{ property.bedroom }}</span>
+                            <span><i class="fa fa-bath fa-pink-color"></i> {{ property.bathroom }}</span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-
-        <div class="col-md-3">
-            <div class="card card-custom">
-                <img class="card-img-top" src="{{ asset('img/photo/photo-1494526585095-c41746248156.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
-                <div class="card-body">
-                    <h5 class="card-title text-uppercase">Card title</h5>
-                    <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">300 000 €</p>
-                    <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> 105 rue didot, Paris</p>
-                    <p class="card-text text-muted text-uppercase">Maison</p>
-                    <p class="card-text d-flex justify-content-between">
-                        <span><i class="fa fa-puzzle-piece fa-pink-color"></i> 60 m <sup>2</sup></span>
-                        <span><i class="fa fa-home fa-pink-color"></i> 1</span>
-                        <span><i class="fa fa-bed fa-pink-color"></i> 2</span>
-                        <span><i class="fa fa-bath fa-pink-color"></i> 1</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card card-custom">
-                <img class="card-img-top" src="{{ asset('img/photo/photo-1522771739844-6a9f6d5f14af.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
-                <div class="card-body">
-                    <h5 class="card-title text-uppercase">Card title</h5>
-                    <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">300 000 €</p>
-                    <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> San Francisco</p>
-                    <p class="card-text text-muted text-uppercase">Appartement</p>
-                    <p class="card-text d-flex justify-content-between">
-                        <span><i class="fa fa-puzzle-piece fa-pink-color"></i> 60 m <sup>2</sup></span>
-                        <span><i class="fa fa-home fa-pink-color"></i> 1</span>
-                        <span><i class="fa fa-bed fa-pink-color"></i> 2</span>
-                        <span><i class="fa fa-bath fa-pink-color"></i> 1</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card card-custom">
-                <img class="card-img-top" src="{{ asset('img/photo/photo-1467987506553-8f3916508521.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
-                <div class="card-body">
-                    <h5 class="card-title text-uppercase">Card title</h5>
-                    <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">300 000 €</p>
-                    <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> San Francisco</p>
-                    <p class="card-text text-muted text-uppercase">Appartement</p>
-                    <p class="card-text d-flex justify-content-between">
-                        <span><i class="fa fa-puzzle-piece fa-pink-color"></i> 60 m <sup>2</sup></span>
-                        <span><i class="fa fa-home fa-pink-color"></i> 1</span>
-                        <span><i class="fa fa-bed fa-pink-color"></i> 2</span>
-                        <span><i class="fa fa-bath fa-pink-color"></i> 1</span>
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
