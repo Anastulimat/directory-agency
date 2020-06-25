@@ -4,56 +4,352 @@
 
 {% block body %}
 
-<!-- HERO IMAGE SECTION -->
-<div class="hero-image">
-    <div class="hero-text">
-        <h1 class="hero-title">Bienvenu dans notre agcence</h1>
-        <p class="lead">Vous allez adorer votre expérience avec nous</p>
-        <a href="#" class="btn btn-pink">Voir les offres</a>
-    </div>
-</div>
+    <!-- Hero section -->
+    <section
+            style="background-image: url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);"
+            class="d-flex align-items-center dark-overlay bg-cover">
+        <div class="container py-6 py-lg-7 text-white overlay-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <h1 class="display-3 font-weight-bold text-shadow">Let us guide you home</h1>
+                    <p class="text-lg text-shadow mb-6">Uncover the best offers on the real estate market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Recently added -->
-<div class="container-fluid" style="margin-top: 75px;">
-    <div class="row row-section">
-        <div class="col">
-            <p class="subtitle">Réaliser votre rêve en un click</p>
-            <h2 class="title">Biens ajoutés récemment</h2>
+    <!-- Search form section -->
+    <div class="container position-relative mt-n6 z-index-20">
+        <div class="search-bar search-bar-with-tabs p-3 p-lg-4">
+            <div class="tab-content">
+                <div id="buy" role="tabpanel" class="tab-pane fade show active">
+                    <form action="#">
+                        <div class="row">
+
+                            <div class="col-md-6 col-lg-3 d-flex align-items-center form-group">
+                                <input type="text" class="form-control" placeholder="Min surface">
+                            </div>
+
+                            <div class="col-md-6 col-lg-3 d-flex align-items-center form-group">
+                                <input type="text" class="form-control" placeholder="Max price">
+                            </div>
+
+                            <div class="col-lg-4 d-flex align-items-center form-group no-divider">
+                                <input type="text" class="form-control" placeholder="Address">
+                            </div>
+                            <div class="col-lg-2 form-group mb-0">
+                                <button type="submit" class="btn btn-primary btn-block h-100">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Last properties -->
+    <section class="py-6">
+        <div class="container">
+            <div class="row mb-lg-6">
+                <div class="col-md-8">
+                    <p class="subtitle text-secondary">Find your home today</p>
+                    <h2 class="mb-md-0">Featured listings around you</h2>
+                </div>
+                <div class="col-md-4 d-md-flex align-items-center justify-content-end"><a href="category-rooms.html"
+                                                                                          class="text-muted text-sm">
+
+                        See all featured listings<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            </div>
         </div>
 
-        <div class="col">
-            <a href="#" class="float-right text-muted text-sm">Voir tous les biens <i class="fa fa-angle-double-right"></i></a>
-        </div>
-    </div>
-</div>
+        <div class="container-fluid">
+            <!-- Slider main container-->
+            <div class="swiper-container swiper-container-mx-negative items-slider-full px-lg-5 pt-3">
+                <!-- Additional required wrapper-->
+                <div class="swiper-wrapper pb-5">
+                    <!-- Slides-->
+                    {% for property in properties %}
+                        <div class="swiper-slide h-auto px-2">
+                            <div class="w-100 h-100 hover-animate">
+                                <div class="card h-100 border-0 shadow">
+                                    <div class="card-img-top overflow-hidden gradient-overlay">
+                                        <img src="https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1488805990569-3c9e1d76d51c.jpg"
+                                             alt="Brooklyn Life, Easy to Manhattan" class="img-fluid"/>
+                                        <a href="#" class="tile-link"></a>
+                                    </div>
+                                    <div class="card-body d-flex align-items-center">
+                                        <div class="w-100">
+                                            <h6 class="card-title">
+                                                <a href="#" class="text-decoration-none text-dark">
+                                                    {{ property.name }}
+                                                </a>
+                                            </h6>
 
-<!-- Recently added cards -->
-<div class="container-fluid mt-4">
-    <div class="row row-section">
-        {% for property in properties %}
-            <div class="col-md-3">
-                <div class="card card-custom">
-                    <img class="card-img-top" src="{{ asset('img/photo/photo-1512917774080-9991f1c4c750.jpg') }}" alt="Card image cap" style="width: 100%; height: auto;">
-                    <div class="card-body">
-                        <h5 class="card-title text-uppercase">{{ property.name }}</h5>
-                        <p class="card-text" style="font-size: 1.5rem; font-weight: bold;">{{ property.formattedPrice }} €</p>
-                        <p class="card-text"><i class="fa fa-map-marker fa-pink-color"></i> {{ property.address }}</p>
-                        <p class="card-text text-muted text-uppercase">{{ property.propertyType }}</p>
-                        <p class="card-text d-flex justify-content-between">
-                            <span><i class="fa fa-puzzle-piece fa-pink-color"></i> {{ property.surface }} m <sup>2</sup></span>
-                            <span><i class="fa fa-home fa-pink-color"></i> {{ property.room }}</span>
-                            <span><i class="fa fa-bed fa-pink-color"></i> {{ property.bedroom }}</span>
-                            <span><i class="fa fa-bath fa-pink-color"></i> {{ property.bathroom }}</span>
-                        </p>
+                                            <h4 class="card-title">
+                                                {{ property.formattedPrice }} €
+                                            </h4>
+
+                                            <p class="text-sm text-secondary card-subtitle mb-2">
+                                                <i class="fa fa-map-marker text-secondary opacity-4 mr-1"></i>
+                                                {{ property.city }}
+                                            </p>
+                                            <p class="text-sm text-muted text-uppercase">{{ property.propertyType }}</p>
+                                            <p class="card-text d-flex justify-content-between text-gray-800 text-sm">
+                                                <span class="mr-1">
+                                                    <i class="fa fa-ruler-combined text-primary opacity-4 text-xs mr-1"></i>{{ property.surface }} m<sup>2</sup>
+                                                </span>
+
+                                                    <span>
+                                                        <i class="fa fa-home text-primary opacity-4 text-xs mr-1"></i>{{ property.room }}
+                                                    </span>
+
+                                                    <span class="mr-1">
+                                                        <i class="fa fa-bed text-primary opacity-4 text-xs mr-1"></i>{{ property.bedroom }}
+                                                    </span>
+
+                                                    <span class="mr-1">
+                                                        <i class="fa fa-bath text-primary opacity-4 text-xs mr-1"></i>{{ property.bathroom }}
+                                                    </span>
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- If we need pagination-->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our picks section-->
+    <section class="py-6 bg-gray-100">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8">
+                    <p class="subtitle text-primary">Most popular cities</p>
+                    <h2>What's on our radar</h2>
+                </div>
+                <div class="col-md-4 d-md-flex align-items-center justify-content-end"><a href="category-3-rooms.html"
+                                                                                          class="text-muted text-sm">
+
+                        See all cities<i class="fas fa-angle-double-right ml-2"></i></a></div>
+            </div>
+            <div class="row">
+                <div class="d-flex align-items-lg-stretch mb-4 col-lg-8">
+                    <div
+                            style="background: center center url(https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1449034446853-66c86144b0ad.jpg) no-repeat; background-size: cover;"
+                            class="card shadow-lg border-0 w-100 border-0 hover-animate"><a href="category.html"
+                                                                                            class="tile-link"> </a>
+                        <div class="d-flex align-items-center h-100 text-white justify-content-center py-6 py-lg-7">
+                            <h3 class="text-shadow text-uppercase mb-0">San Francisco</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-lg-stretch mb-4 col-lg-4">
+                    <div
+                            style="background: center center url(https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1429554429301-1c7d5ae2d42e.jpg) no-repeat; background-size: cover;"
+                            class="card shadow-lg border-0 w-100 border-0 hover-animate"><a href="category.html"
+                                                                                            class="tile-link"> </a>
+                        <div class="d-flex align-items-center h-100 text-white justify-content-center py-6 py-lg-7">
+                            <h3 class="text-shadow text-uppercase mb-0">Los Angeles</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-</div>
+            <div class="row">
+                <div class="d-flex align-items-lg-stretch mb-4 col-lg-4">
+                    <div
+                            style="background: center center url(https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1523430410476-0185cb1f6ff9.jpg) no-repeat; background-size: cover;"
+                            class="card shadow-lg border-0 w-100 border-0 hover-animate"><a href="category.html"
+                                                                                            class="tile-link"> </a>
+                        <div class="d-flex align-items-center h-100 text-white justify-content-center py-6 py-lg-7">
+                            <h3 class="text-shadow text-uppercase mb-0">Santa Monica</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-lg-stretch mb-4 col-lg-4">
+                    <div
+                            style="background: center center url(https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1505245208761-ba872912fac0.jpg) no-repeat; background-size: cover;"
+                            class="card shadow-lg border-0 w-100 border-0 hover-animate"><a href="category.html"
+                                                                                            class="tile-link"> </a>
+                        <div class="d-flex align-items-center h-100 text-white justify-content-center py-6 py-lg-7">
+                            <h3 class="text-shadow text-uppercase mb-0">San Diego</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-lg-stretch mb-4 col-lg-4">
+                    <div
+                            style="background: center center url(https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/photo/photo-1519867850-74775a87e783.jpg) no-repeat; background-size: cover;"
+                            class="card shadow-lg border-0 w-100 border-0 hover-animate"><a href="category.html"
+                                                                                            class="tile-link"> </a>
+                        <div class="d-flex align-items-center h-100 text-white justify-content-center py-6 py-lg-7">
+                            <h3 class="text-shadow text-uppercase mb-0">Fresno</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="container-fluid m-4">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur, assumenda at atque eos et incidunt iusto, minima nemo, neque odit perferendis porro quod reiciendis rem repellat sapiente sint tempore voluptatem!</p>
-</div>
+    <!-- Section -->
+    <section class="py-6">
+        <div class="container">
+            <div class="pb-lg-4">
+                <p class="subtitle text-secondary">Why us?</p>
+                <h2 class="mb-5">Discover the best investment opportunities around you</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <svg class="svg-icon w-2rem h-2rem text-primary">
+                                <use xlink:href="#destination-map-1"></use>
+                            </svg>
+                        </div>
+                        <h3 class="h6 text-uppercase">Find the best investment area</h3>
+                        <p class="text-muted text-sm">One morning, when Gregor Samsa woke from troubled dreams, he found
+                            himself
+                            transformed in his bed in</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4">
+                        <div class="icon-rounded mb-3 bg-secondary-light">
+                            <svg class="svg-icon w-2rem h-2rem text-secondary">
+                                <use xlink:href="#real-estate-1"></use>
+                            </svg>
+                        </div>
+                        <h3 class="h6 text-uppercase">Purchase a property</h3>
+                        <p class="text-muted text-sm">The bedding was hardly able to cover it and seemed ready to slide
+                            off any
+                            moment. His many legs, pit</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
+                    <div class="px-0 pr-lg-4">
+                        <div class="icon-rounded mb-3 bg-primary-light">
+                            <svg class="svg-icon w-2rem h-2rem text-primary">
+                                <use xlink:href="#pay-1"></use>
+                            </svg>
+                        </div>
+                        <h3 class="h6 text-uppercase">Profit</h3>
+                        <p class="text-muted text-sm">His room, a proper human room although a little too small, lay
+                            peacefully
+                            between its four familiar </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="position-relative z-index-10 d-print-none">
+        <!-- Main block - menus, subscribe form-->
+        <div class="py-6 bg-gray-200 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="font-weight-bold text-uppercase text-dark mb-3">Directory</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><a href="#" target="_blank" title="twitter"
+                                                            class="text-muted text-hover-primary"><i
+                                            class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="#" target="_blank" title="facebook"
+                                                            class="text-muted text-hover-primary"><i
+                                            class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="#" target="_blank" title="instagram"
+                                                            class="text-muted text-hover-primary"><i
+                                            class="fab fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"
+                                                            class="text-muted text-hover-primary"><i
+                                            class="fab fa-pinterest"></i></a></li>
+                            <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"
+                                                            class="text-muted text-hover-primary"><i
+                                            class="fab fa-vimeo"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Rentals</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html" class="text-muted">Rooms </a></li>
+                            <li><a href="category-rooms.html" class="text-muted">Map on top </a></li>
+                            <li><a href="category-2-rooms.html" class="text-muted">Side map </a></li>
+                            <li><a href="category-3-rooms.html" class="text-muted">No map </a></li>
+                            <li><a href="detail-rooms.html" class="text-muted">Room detail </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                        <h6 class="text-uppercase text-dark mb-3">Pages</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="compare.html" class="text-muted">Comparison <span
+                                            class="badge badge-info-light ml-1">New</span> </a></li>
+                            <li><a href="team.html" class="text-muted">Team <span class="badge badge-info-light ml-1">New</span>
+                                </a>
+                            </li>
+                            <li><a href="contact.html" class="text-muted">Contact </a></li>
+                            <li><a href="pricing.html" class="text-muted">Pricing </a></li>
+                            <li><a href="text.html" class="text-muted">Text page </a></li>
+                            <li><a href="faq.html" class="text-muted">F.A.Q.s </a></li>
+                            <li><a href="coming-soon.html" class="text-muted">Coming soon </a></li>
+                            <li><a href="404.html" class="text-muted">404 page <span
+                                            class="badge badge-info-light ml-1">New</span>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <h6 class="text-uppercase text-dark mb-3">Daily Offers & Discounts</h6>
+                        <p class="mb-3"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque
+                            temporibus.</p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group mb-3">
+                                <input type="email" placeholder="Your Email Address" aria-label="Your Email Address"
+                                       class="form-control bg-transparent border-dark border-right-0">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-outline-dark border-left-0"><i
+                                                class="fa fa-paper-plane text-lg"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright section of the footer-->
+        <div class="py-4 font-weight-light bg-gray-800 text-gray-300">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-left">
+                        <p class="text-sm mb-md-0">&copy; 2020, Your company. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-right">
+                            <li class="list-inline-item"><img
+                                        src="https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/visa.svg"
+                                        alt="..." class="w-2rem"></li>
+                            <li class="list-inline-item"><img
+                                        src="https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/mastercard.svg"
+                                        alt="..."
+                                        class="w-2rem"></li>
+                            <li class="list-inline-item"><img
+                                        src="https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/paypal.svg"
+                                        alt="..." class="w-2rem">
+                            </li>
+                            <li class="list-inline-item"><img
+                                        src="https://d19m59y37dris4.cloudfront.net/directory/1-4-2/img/western-union.svg"
+                                        alt="..."
+                                        class="w-2rem"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer end-->
+
 
 {% endblock %}

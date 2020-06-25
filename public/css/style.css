@@ -43,10 +43,16 @@ body, html {
 }
 
 .card-custom {
-    -webkit-box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.66);
-    -moz-box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.66);
-    box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.66);
-    transition: all 0.5s;
+    -webkit-box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.33);
+    -moz-box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.33);
+    box-shadow: 10px 10px 22px -8px rgba(0,0,0,0.33);
+    position: relative;
+    top: 0;
+    transition: all 0.3s;
+}
+
+.card-custom:hover {
+    top: -5px;
 }
 
 
@@ -70,10 +76,10 @@ HERO SECTION
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    font-size: 1vw;
 }
 
 .hero-title {
-    font-size: 50px;
     font-weight: bold;
 }
 
